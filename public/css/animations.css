@@ -1,0 +1,424 @@
+/* =============================================
+   CARVIX — ANIMATION CSS
+   Taruh file ini di: public/css/animations.css
+   Lalu tambahkan di layouts/app.blade.php dalam <head>:
+   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
+   ============================================= */
+
+/* =========================================================
+   PAGE TRANSITION
+   ========================================================= */
+body.cvx-page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+body.cvx-page-ready {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.cvx-page-exit {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+.cvx-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cvx-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* =========================================================
+   NAVBAR SCROLL STATES
+   ========================================================= */
+.navbar {
+  transition: background 0.3s ease,
+              padding 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar--scrolled {
+  background: rgba(12, 12, 12, 0.97) !important;
+  box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  height: 54px !important;
+  padding: 0 2.5rem !important;
+}
+
+.navbar--hidden {
+  transform: translateY(-100%) !important;
+}
+
+/* =========================================================
+   RIPPLE BUTTON EFFECT
+   ========================================================= */
+.hbtn,
+.btn-nav,
+.qs-btn,
+.btn-primary,
+.mod-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.cvx-ripple {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: cvxRipple 0.6s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes cvxRipple {
+  to {
+    transform: translate(-50%, -50%) scale(30);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   CARD HOVER TRANSITION
+   ========================================================= */
+.mod-card,
+.feature-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  will-change: transform;
+}
+
+/* =========================================================
+   INVOICE LINE SHIMMER
+   ========================================================= */
+.inv-line {
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.inv-line--active {
+  background: rgba(232, 101, 10, 0.35) !important;
+  transform: scaleX(1.03);
+}
+
+/* =========================================================
+   MOD-BAR ANIMATED
+   ========================================================= */
+.mod-bar {
+  height: 3px;
+  background: #e0ddd8;
+  border-radius: 4px;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.mod-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(90deg, transparent, #e8650a, transparent);
+  border-radius: 4px;
+}
+
+.mod-bar--active::after {
+  animation: cvxBarSlide 1.4s ease-in-out infinite;
+}
+
+@keyframes cvxBarSlide {
+  0%   { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* =========================================================
+   FLOATING PARTICLES — Hero
+   ========================================================= */
+.cvx-particle {
+  position: absolute;
+  background: rgba(232, 101, 10, 0.5);
+  border-radius: 50%;
+  animation: cvxFloat linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes cvxFloat {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+  25%  { transform: translateY(-30px) translateX(15px) scale(1.2); opacity: 0.8; }
+  50%  { transform: translateY(-60px) translateX(-10px) scale(0.8); opacity: 0.5; }
+  75%  { transform: translateY(-90px) translateX(20px) scale(1.1); opacity: 0.7; }
+  100% { transform: translateY(-130px) translateX(0) scale(1); opacity: 0; }
+}
+
+/* =========================================================
+   FORM SHAKE VALIDASI
+   ========================================================= */
+@keyframes cvxShake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.cvx-shake {
+  animation: cvxShake 0.4s ease;
+  border-color: #e8650a !important;
+  box-shadow: 0 0 0 2px rgba(232, 101, 10, 0.25) !important;
+}
+
+/* =========================================================
+   HERITAGE BADGE SPIN
+   ========================================================= */
+.heritage-badge {
+  transition: box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.heritage-badge:hover {
+  box-shadow: 0 0 30px rgba(232, 101, 10, 0.6) !important;
+}
+
+/* =========================================================
+   HERO ACCENT TYPING CURSOR
+   ========================================================= */
+.hero-accent::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  animation: cvxBlink 0.75s step-end infinite;
+  color: var(--orange, #e8650a);
+}
+
+@keyframes cvxBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* =========================================================
+   MOD-DOTS — bouncing dots animasi
+   ========================================================= */
+.mod-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 1.5rem;
+}
+
+.mod-dots span {
+  width: 8px;
+  height: 8px;
+  background: #e8650a;
+  border-radius: 50%;
+  animation: cvxDotBounce 1.2s ease-in-out infinite;
+}
+
+.mod-dots span:nth-child(2) { animation-delay: 0.2s; }
+.mod-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes cvxDotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40%           { transform: translateY(-10px); opacity: 1; }
+}
+
+/* =========================================================
+   HERITAGE SECTION — img glow pulse
+   ========================================================= */
+.heritage-img {
+  animation: cvxGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes cvxGlowPulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(232, 101, 10, 0.15); }
+  50%      { box-shadow: 0 0 80px rgba(232, 101, 10, 0.35); }
+}
+
+/* =========================================================
+   SERVICES PAGE — hover card rise
+   ========================================================= */
+.feature-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s ease !important;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 30px 60px rgba(232, 101, 10, 0.12) !important;
+}
+
+/* =========================================================
+   STAT INV — fade-up entrance helper
+   ========================================================= */
+.inv-stat {
+  transition-property: opacity, transform;
+}
+
+/* =========================================================
+   FOOTER LINKS — underline draw
+   ========================================================= */
+.footer-links a,
+.footer-contact p {
+  position: relative;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: #e8650a;
+  transition: width 0.25s ease;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* =========================================================
+   ALERT FLASH — slide in
+   ========================================================= */
+.alert-success {
+  animation: cvxSlideDown 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cvxSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* =========================================================
+   QUICK SCHEDULE CARD — float up entrance
+   ========================================================= */
+.qs-card {
+  animation: cvxCardIn 0.8s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cvxCardIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   HERO TAG — flicker masuk
+   ========================================================= */
+.hero-tag {
+  animation: cvxTagFlicker 0.6s steps(3) both;
+}
+
+@keyframes cvxTagFlicker {
+  0%   { opacity: 0; }
+  40%  { opacity: 1; }
+  60%  { opacity: 0.3; }
+  80%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* =========================================================
+   HERO HEADING — words slide in dengan stagger
+   ========================================================= */
+.hero-heading {
+  animation: cvxHeadIn 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-desc {
+  animation: cvxHeadIn 0.9s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-btns {
+  animation: cvxHeadIn 0.9s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cvxHeadIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* =========================================================
+   LOGO — subtle rotate icon
+   ========================================================= */
+.logo-icon {
+  display: inline-block;
+  animation: cvxLogoSpin 8s linear infinite;
+}
+
+@keyframes cvxLogoSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   BUTTON NAV — shimmer saat hover
+   ========================================================= */
+.btn-nav {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-nav::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 60%; height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  skewX: -20deg;
+  transition: left 0.45s ease;
+}
+
+.btn-nav:hover::before {
+  left: 140%;
+}
+
+/* =========================================================
+   MODULES STAT — scale bounce
+   ========================================================= */
+.modules-stat-num {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.modules-stat:hover .modules-stat-num {
+  transform: scale(1.08);
+  color: #ff7a20;
+}
+
+/* =========================================================
+   TRACKING / DASHBOARD PAGES — table row hover
+   ========================================================= */
+table tbody tr {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+table tbody tr:hover {
+  background: rgba(232, 101, 10, 0.05);
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   RESPONSIVE — matikan beberapa efek di mobile
+   ========================================================= */
+@media (max-width: 768px) {
+  .hero-accent::after { display: none; }
+  .cvx-particle      { display: none; }
+}
