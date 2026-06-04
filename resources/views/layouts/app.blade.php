@@ -99,7 +99,7 @@
         <div class="footer-brand">
             <span class="logo-icon">◈</span>
             <span class="logo-text">CARVIX</span>
-            <p>Sistem Layanan & Pelacakan Otomotif Presisi</p>
+            <p>Sistem Manajemen Service Kendaraan Digital</p>
         </div>
         <div class="footer-links">
             <h4>Navigasi</h4>

@@ -35,7 +35,7 @@
         {{-- Tombol nama + chevron --}}
         <div style="position:relative" id="adminMenu">
             <button onclick="toggleAdminMenu()"
-                    style="display:flex;align-items:center;gap:.6rem;background:transparent;border:1px solid #333;border-radius:999px;padding:.4rem .9rem .4rem .5rem;cursor:pointer;color:inherit">
+                    style="display:flex;align-items:center;gap:.6rem;background:transparent;border:1px solid #333;border-radius:999px;padding:.4rem .9rem .4rem .5rem;cursor:pointer;color:#ffffff">
                 <div style="width:30px;height:30px;border-radius:50%;background:#f59e0b22;color:#f59e0b;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem">
                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                 </div>
@@ -50,19 +50,19 @@
                  style="display:none;position:absolute;right:0;top:calc(100% + 8px);background:#111;border:1px solid #222;border-radius:12px;min-width:200px;padding:.5rem;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,.4)">
 
                 <div style="padding:.75rem 1rem;border-bottom:1px solid #222;margin-bottom:.25rem">
-                    <p style="font-weight:600;font-size:.9rem">{{ Auth::user()->name }}</p>
+                    <p style="font-weight:600;font-size:.9rem; color: #ffffff;">{{ Auth::user()->name }}</p>
                     <p style="font-size:.72rem;color:#f59e0b;letter-spacing:.08em;margin-top:.15rem">ADMIN</p>
                 </div>
 
                 <a href="{{ route('admin.dashboard') }}"
-                   style="display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:8px;font-size:.85rem;text-decoration:none;color:inherit;transition:background .15s"
+                   style="display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:8px;font-size:.85rem;text-decoration:none;color:#ffffff;transition:background .15s"
                    onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='transparent'">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
                     Dashboard
                 </a>
 
                 <a href="{{ route('admin.bookings.index') }}"
-                   style="display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:8px;font-size:.85rem;text-decoration:none;color:inherit;transition:background .15s"
+                   style="display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:8px;font-size:.85rem;text-decoration:none;color:#ffffff;transition:background .15s"
                    onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='transparent'">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M2 7h10M2 10h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
                     Kelola Booking

@@ -24,6 +24,8 @@
             'in_progress' => 'Dalam Proses ('.$counts['in_progress'].')',
             'completed'   => 'Selesai ('.$counts['completed'].')',
             'cancelled'   => 'Dibatalkan ('.$counts['cancelled'].')',
+            'paid'        => 'Lunas ('.$counts['paid'].')',
+            'unpaid'      => 'Belum Lunas ('.$counts['unpaid'].')',
         ] as $key => $label)
         <a href="?status={{ $key }}"
            style="font-size:.8rem;padding:6px 16px;border-radius:999px;border:1px solid {{ $status===$key ? '#f59e0b' : '#d1d5db' }};background:{{ $status===$key ? '#f59e0b' : '#fff' }};color:{{ $status===$key ? '#000' : '#555' }};text-decoration:none;font-weight:{{ $status===$key ? '700' : '400' }}">

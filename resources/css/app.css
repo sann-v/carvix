@@ -2221,3 +2221,22 @@ nav[aria-label="pagination"] { margin-top: 2rem; display: flex; justify-content:
     flex-direction: row;
     gap: 2.5rem;
 }
+
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    .invoice-card,
+    .invoice-card * {
+        visibility: visible;
+    }
+
+    .invoice-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}

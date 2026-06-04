@@ -30,7 +30,7 @@ class DashboardController extends Controller
                 ->with(['invoice'])
                 ->latest()
                 ->first();
-            
+
             $completedBooking = Booking::whereIn('vehicle_id', $vehicles->pluck('id'))
                 ->where('status', ['completed', 'cancelled'])
                 ->with(['invoice'])
@@ -47,6 +47,6 @@ class DashboardController extends Controller
             ];
         }
 
-        return view('dashboard', compact('vehicle', 'vehicles', 'activeBooking', 'completedBooking', 'stats', 'user'));
+        return view('dashboard', compact('vehicle', 'vehicles', 'activeBooking', 'stats', 'user'));
     }
 }

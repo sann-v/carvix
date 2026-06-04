@@ -11,9 +11,9 @@
    1. SCROLL REVEAL — semua elemen masuk dengan animasi
    ========================================================= */
 function initScrollReveal() {
-  const targets = document.querySelectorAll(
+ const targets = document.querySelectorAll(
     '.mod-card, .feature-card, .hf-item, .inv-stat, ' +
-    '.heritage-text, .heritage-img-wrap, .invoice-row-left, ' +
+    '.heritage-text, .invoice-row-left, ' +
     '.invoice-row-right, .modules-header, .page-hero-content'
   );
 
@@ -31,7 +31,7 @@ function initScrollReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
   targets.forEach(el => {
     el.classList.add('cvx-hidden');

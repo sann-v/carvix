@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Carvix — Sistem Layanan & Pelacakan Mobil Pintar')
+@section('title', 'Carvix — Sistem Manajemen Service Kendaraan Digital')
 
 @section('content')
 
@@ -23,13 +23,11 @@
         <div class="hero-left">
             <span class="hero-tag">SKENSA AUTO SERVICE</span>
             <h1 class="hero-heading">
-                Sistem Layanan &<br>
-                Pelacakan Mobil<br>
-                <span class="hero-accent">Pintar</span>
+                Sistem Manajemen Service Kendaraan Digital
             </h1>
             <p class="hero-desc">
-                Rasakan generasi berikutnya dari manajemen bengkel digital.
-                Diagnostik waktu nyata, pelacakan transparan, dan perawatan presisi untuk pengemudi modern.
+                Dengan Carvix, Anda dapat melihat perkembangan service kendaraan secara langsung,
+                 mendapatkan informasi yang jelas, serta menikmati proses perawatan kendaraan yang lebih praktis dan transparan.
             </p>
             <div class="hero-btns">
                 <a href="{{ route('booking') }}" class="hbtn hbtn-primary">PESAN LAYANAN</a>
@@ -38,7 +36,7 @@
         </div>
         <div class="hero-right">
             <div class="qs-card">
-                <p class="qs-title">Jadwal Cepat</p>
+                <p class="qs-title">Pesan Cepat</p>
                 <form action="{{ route('booking') }}" method="GET">
                     <div class="qs-field">
                         <label>VIN KENDARAAN (Opsional)</label>
@@ -110,7 +108,7 @@
                 @else
                     <a href="{{ route('login') }}" class="mod-link">MASUK UNTUK LIHAT →</a>
                 @endauth
-                
+
             </div>
         </div>
 
@@ -161,7 +159,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
 
             {{-- KANAN — hanya muncul jika ada tagihan belum lunas --}}
@@ -295,12 +293,10 @@
                 Keahlian Mekanik.
             </h2>
             <p class="heritage-desc">
-                Carvix dimulai sebagai bengkel penyetelan kinerja khusus. Hari ini, kami
-                menjembatani kesenjangan antara keunggulan mekanik tradisional dan solusi perangkat lunak mutakhir.
+                Carvix dikembangkan untuk membantu proses layanan bengkel menjadi lebih terstruktur dan mudah diakses. Dengan memanfaatkan teknologi digital, Carvix memudahkan pelanggan dan pihak bengkel dalam mengelola informasi service kendaraan.
             </p>
             <p class="heritage-desc">
-                Kami percaya bahwa perawatan kendaraan tidak boleh menjadi kotak hitam. Platform kami
-                memberdayakan pemilik dengan wawasan berbasis data tentang kesehatan kendaraan mereka.
+                Dengan Carvix, pelanggan dapat memantau perkembangan service kendaraan serta melihat informasi yang dibutuhkan tanpa harus datang langsung ke bengkel.
             </p>
             <div class="heritage-features">
                 <div class="hf-item">

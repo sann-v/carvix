@@ -65,10 +65,15 @@
                     <strong>{{ \Carbon\Carbon::parse($booking->estimated_finish)->format('d M Y, H:i') }}</strong>
                 </div>
                 @endif
-                @if($booking->service_cost)
+                @if($booking->invoice)
                 <div class="track-meta-item">
-                    <span>ESTIMASI BIAYA</span>
-                    <strong>Rp {{ number_format($booking->service_cost, 0, ',', '.') }}</strong>
+                    <span>FAKTUR</span>
+
+                    <a href="{{ route('invoice.show', $booking->invoice->id) }}"
+                    class="hbtn hbtn-primary"
+                    style="margin-top:.4rem;display:inline-flex;font-size:.75rem">
+                        LIHAT INVOICE
+                    </a>
                 </div>
                 @endif
             </div>

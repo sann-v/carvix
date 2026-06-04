@@ -36,55 +36,10 @@
             <p style="color:var(--text-m);max-width:400px;margin:0 auto .3rem">
                 Faktur akan diterbitkan otomatis setelah servis kendaraan Anda selesai dan admin memproses tagihan.
             </p>
-            <p style="color:var(--text-l);font-size:.82rem">Silakan cek kembali setelah layanan selesai.</p>
-            <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap">
-                <a href="{{ route('dashboard') }}" class="hbtn hbtn-primary" style="display:inline-flex;font-size:.8rem">LIHAT DASBOR</a>
-                <a href="{{ route('history') }}" class="hbtn hbtn-ghost" style="display:inline-flex;font-size:.8rem">RIWAYAT LAYANAN</a>
-            </div>
-        </div>
 
-        {{-- ══════════════ ADA FAKTUR ══════════════ --}}
-        @else
-        {{-- Banner status pembayaran yang mencolok --}}
-        @if($invoice->isPaid())
-        <div style="background:#d1fae5;border:2px solid #6ee7b7;border-radius:var(--radius-lg);padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem">
-            <span style="font-size:1.8rem">✅</span>
-            <div>
-                <p style="font-weight:700;color:#065f46;font-size:1rem">Tagihan Telah Lunas</p>
-                <p style="font-size:.82rem;color:#047857">
-                    Dibayar pada {{ $invoice->paid_at ? $invoice->paid_at->format('d M Y, H:i') : $invoice->updated_at->format('d M Y') }}
-                    &nbsp;·&nbsp; Total: <strong>Rp {{ number_format($invoice->total, 0, ',', '.') }}</strong>
-                </p>
-            </div>
-        </div>
-        @elseif($invoice->isOverdue())
-        <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:var(--radius-lg);padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem">
-            <span style="font-size:1.8rem">⚠️</span>
-            <div>
-                <p style="font-weight:700;color:#991b1b;font-size:1rem">Tagihan Melewati Jatuh Tempo</p>
-                <p style="font-size:.82rem;color:#b91c1c">
-                    Jatuh tempo: {{ $invoice->due_date->format('d M Y') }}
-                    &nbsp;·&nbsp; Total: <strong>Rp {{ number_format($invoice->total, 0, ',', '.') }}</strong>
-                </p>
-                <p style="font-size:.78rem;color:#b91c1c;margin-top:.2rem">Segera hubungi kami untuk informasi pembayaran.</p>
-            </div>
-        </div>
-        @else
-        <div style="background:#fef3c7;border:2px solid #fde68a;border-radius:var(--radius-lg);padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem">
-            <span style="font-size:1.8rem">⏳</span>
-            <div>
-                <p style="font-weight:700;color:#92400e;font-size:1rem">Menunggu Pembayaran</p>
-                <p style="font-size:.82rem;color:#b45309">
-                    Jatuh tempo: <strong>{{ $invoice->due_date->format('d M Y') }}</strong>
-                    &nbsp;·&nbsp; Total: <strong>Rp {{ number_format($invoice->total, 0, ',', '.') }}</strong>
-                </p>
-                <p style="font-size:.78rem;color:#b45309;margin-top:.2rem">
-                    Hubungi bengkel kami untuk konfirmasi pembayaran: <strong>+62 21 922-0000</strong>
-                </p>
             </div>
         </div>
         @endif
-
         <div class="invoice-card">
             {{-- HEADER --}}
             <div class="invoice-header">
@@ -92,10 +47,10 @@
                     <span class="logo-icon large">◈</span>
                     <div>
                         <h2>CARVIX</h2>
-                        <p>Layanan Otomotif Presisi</p>
-                        <p>Jl. Industri Raya No. 88, Jakarta Barat</p>
-                        <p>DKI Jakarta, 11450</p>
-                        <p>+62 21 922-0000 · info@carvix.id</p>
+                        <p>Skensa Auto Service</p>
+                        <p>Jl. Cokroaminoto No.84, Pemecutan Kaja </p>
+                        <p>Denpasar Utara </p>
+                        <p>+62 812 3871 6369 · info@carvix.id</p>
                     </div>
                 </div>
                 <div class="invoice-meta">
@@ -175,7 +130,7 @@
                         <span>Rp {{ number_format($invoice->tax, 0, ',', '.') }}</span>
                     </div>
                     <div class="total-row total-final" style="display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;">
-                    
+
                     <div class="total-row total-final" style="display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;">
 
                     <div style="width:100%;display:flex;justify-content:space-between;">
@@ -206,11 +161,10 @@
 
             {{-- Footer faktur --}}
             <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center;color:var(--text-l);font-size:.78rem">
-                <p>Terima kasih telah mempercayakan kendaraan Anda kepada <strong>Carvix Precision Automotive</strong></p>
-                <p style="margin-top:.3rem">Pertanyaan? Hubungi <strong>+62 21 922-0000</strong> atau <strong>info@carvix.id</strong></p>
+                <p>Terima kasih telah mempercayakan kendaraan Anda kepada <strong>Skensa Auto Service</strong></p>
+                <p style="margin-top:.3rem">Pertanyaan? Hubungi <strong>+62 812 3871 6369</strong> atau <strong>info@carvix.id</strong></p>
             </div>
         </div>
-        @endif
 
     </div>
 </section>

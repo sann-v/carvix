@@ -65,7 +65,7 @@
                 <span style="font-size:.8rem;padding:6px 14px;border-radius:999px;font-weight:700;
                     background:{{ $booking->invoice->isPaid() ? '#d1fae5' : '#fef3c7' }};
                     color:{{ $booking->invoice->isPaid() ? '#065f46' : '#92400e' }}">
-                    {{ $booking->invoice->isPaid() ? '✓ LUNAS' : '⏳ BELUM LUNAS' }}
+                    {{ $booking->invoice->isPaid() ?  'LUNAS' : 'BELUM LUNAS' }}
                 </span>
                 {{-- TOMBOL CEPAT UBAH STATUS BAYAR --}}
                 @if(!$booking->invoice->isPaid())
@@ -115,13 +115,13 @@
     @endif
 
     {{-- FORM UPDATE BOOKING + FAKTUR --}}
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06)">
+    <div style="margin-top:1.5rem; background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06)">
         <p style="font-size:.72rem;letter-spacing:.12em;color:#f59e0b;font-weight:700;margin-bottom:1.5rem">UPDATE STATUS & FAKTUR</p>
 
                 @if ($errors->any())
         <div style="background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;padding:1rem;border-radius:10px;margin-bottom:1.5rem">
             <p style="font-weight:700;margin-bottom:.5rem">
-                ⚠ Ada data yang belum valid
+                Ada data yang belum valid
             </p>
 
             <ul style="margin:0;padding-left:1.2rem;font-size:.9rem">
@@ -233,6 +233,16 @@
                     </div>
                 </div>
 
+                <div class="form-group" style="margin-top:1rem">
+                    <label style="font-size:.78rem;letter-spacing:.08em;color:#374151;font-weight:600;display:block;margin-bottom:.5rem">TANGGAL JATUH TEMPO</label>
+                    <input
+                        type="date"
+                        name="due_date"
+                        id="due_date"
+                        value="{{ old('due_date', now()->addDays(14)->format('Y-m-d')) }}"
+                        class="form-control">
+                </div>
+
                 {{-- Status Pembayaran --}}
                 <div style="margin-top:1rem">
                     <label style="font-size:.78rem;letter-spacing:.08em;color:#374151;font-weight:600;display:block;margin-bottom:.5rem">STATUS PEMBAYARAN FAKTUR</label>
@@ -295,4 +305,4 @@ function recalc() {
 document.querySelectorAll('.inv-item-row-admin input').forEach(el => el.addEventListener('input', recalc));
 recalc();
 </script>
-@endsection 
+@endsection

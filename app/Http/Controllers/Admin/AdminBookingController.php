@@ -15,7 +15,17 @@ class AdminBookingController extends Controller
         $status = $request->query('status', 'all');
         $query  = Booking::with(['vehicle', 'invoice'])->latest();
 
-        if ($status !== 'all') {
+        if ($status === 'paid') {
+            $query->whereHas('invoice', function ($q) {
+                $q->where('payment_status', 'paid');
+            });
+        }
+        elseif ($status === 'unpaid') {
+            $query->whereHas('invoice', function ($q) {
+                $q->where('payment_status', 'unpaid');
+            });
+        }
+        elseif ($status !== 'all') {
             $query->where('status', $status);
         }
 
@@ -28,6 +38,8 @@ class AdminBookingController extends Controller
             'in_progress' => Booking::where('status', 'in_progress')->count(),
             'completed'   => Booking::where('status', 'completed')->count(),
             'cancelled'   => Booking::where('status', 'cancelled')->count(),
+            'paid'        => Booking::whereHas('invoice', fn($q) => $q->where('payment_status', 'paid'))->count(),
+            'unpaid'      => Booking::whereHas('invoice', fn($q) => $q->where('payment_status', 'unpaid'))->count(),
         ];
 
         return view('admin.bookings.index', compact('bookings', 'status', 'counts'));
@@ -130,7 +142,7 @@ class AdminBookingController extends Controller
                     'items'          => $items,
                     'payment_status' => $paymentStatus,
                     'issue_date'     => now(),
-                    'due_date'       => now()->addDays(14),
+                    'due_date'       => $request->input('due_date', now()->addDays(14)),
                     'paid_at'        => $paymentStatus === 'paid' ? now() : null,
                 ]);
             }
