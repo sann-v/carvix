@@ -9,17 +9,17 @@
         <div class="auth-card">
             <div class="auth-brand">
                 <span class="logo-icon" style="font-size:1.5rem">◈</span>
-                <span class="logo-text" style="font-size:1.3rem">CARVIX</span>
+                <span class="logo-text" style="font-size:1.3rem">Skensa Auto Service</span>
             </div>
 
-            <div style="display:inline-block;background:#f59e0b22;color:#f59e0b;
+            <div style="display:inline-block;background:var(--yellow-dark)22;color:var(--yellow-dark);
                         font-size:0.7rem;font-weight:700;letter-spacing:.1em;
                         padding:4px 12px;border-radius:999px;margin-bottom:1rem">
                 PORTAL KARYAWAN
             </div>
 
             <h1 class="auth-title">Masuk sebagai Admin</h1>
-            <p class="auth-sub">Khusus karyawan dan staf bengkel Carvix</p>
+            <p class="auth-sub">Khusus karyawan dan staf bengkel Skensa Auto Service</p>
 
             @if($errors->any())
                 <div class="auth-alert-error">
@@ -41,7 +41,7 @@
                 <div class="auth-field">
                     <label>EMAIL KARYAWAN</label>
                     <input type="email" name="email" value="{{ old('email') }}"
-                           placeholder="karyawan@carvix.com" required autofocus>
+                           placeholder="karyawan@Skensa Auto Service.com" required autofocus>
                 </div>
 
                 <div class="auth-field">

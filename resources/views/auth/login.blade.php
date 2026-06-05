@@ -9,7 +9,7 @@
             <div class="auth-card">
                 <div class="auth-brand">
                     <span class="logo-icon" style="font-size:1.5rem">◈</span>
-                    <span class="logo-text" style="font-size:1.3rem">CARVIX</span>
+                    <span class="logo-text" style="font-size:1.3rem">Skensa Auto Service</span>
                 </div>
 
                 <h1 class="auth-title">Selamat Datang Kembali</h1>
@@ -50,7 +50,7 @@
                     <div class="auth-remember">
                         <label class="checkbox-label">
                             <input type="checkbox" name="remember">
-                            <span>Ingat saya</span>
+                            <span class="chekbox-text">Ingat saya</span>
                         </label>
                     </div>
 

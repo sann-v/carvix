@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carvix — @yield('title', 'Layanan Otomotif Presisi')</title>
+    <title>Skensa Auto Service — @yield('title', 'Layanan Otomotif Presisi')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -16,7 +16,7 @@
 <nav class="navbar">
     <a href="{{ route('home') }}" class="navbar-brand">
         <span class="logo-icon">◈</span>
-        <span class="logo-text">CARVIX</span>
+        <span class="logo-text">Skensa Auto Service</span>
     </a>
 
     <ul class="nav-links">
@@ -30,7 +30,6 @@
     </ul>
 
     <div class="navbar-right">
-        <a href="{{ route('booking') }}" class="btn-nav">PESAN LAYANAN</a>
 
         @auth
         <!-- USER DROPDOWN -->
@@ -98,7 +97,7 @@
     <div class="footer-inner">
         <div class="footer-brand">
             <span class="logo-icon">◈</span>
-            <span class="logo-text">CARVIX</span>
+            <span class="logo-text">Skensa Auto Service</span>
             <p>Sistem Manajemen Service Kendaraan Digital</p>
         </div>
         <div class="footer-links">
@@ -112,13 +111,13 @@
         </div>
         <div class="footer-contact">
             <h4>Kontak</h4>
-            <p>Jl. Industri Raya No. 88, Jakarta Barat</p>
-            <p>DKI Jakarta, 11450</p>
-            <p>+62 21 922-0000</p>
+            <p>Jl. Cokroaminoto No.84, Pemecutan Kaja, Denpasar Utara</p>
+            <p>Bali, 80116</p> <br>
+            <p>+62 812 3639 6662</p>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© {{ date('Y') }} Carvix Precision Engineering. Semua hak dilindungi.</p>
+        <p>© {{ date('Y') }} Skensa Auto Service Precision Engineering. Semua hak dilindungi.</p>
     </div>
 </footer>
 

@@ -5,7 +5,7 @@
 <div style="padding:2rem;max-width:860px;margin:0 auto">
 
     <a href="{{ route('admin.bookings.index') }}"
-       style="font-size:.85rem;color:#f59e0b;text-decoration:none;font-weight:600">← Kembali ke Daftar</a>
+       style="font-size:.85rem;color:var(--yellow-dark);text-decoration:none;font-weight:600">← Kembali ke Daftar</a>
 
     <div style="margin:1rem 0 2rem">
         <p style="font-size:.7rem;letter-spacing:.12em;color:#9ca3af;margin-bottom:.25rem">{{ $booking->booking_code }}</p>
@@ -21,7 +21,7 @@
 
     {{-- INFO KENDARAAN --}}
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06)">
-        <p style="font-size:.72rem;letter-spacing:.12em;color:#f59e0b;font-weight:700;margin-bottom:1.25rem">INFORMASI KENDARAAN</p>
+        <p style="font-size:.72rem;letter-spacing:.12em;color:var(--yellow-dark);font-weight:700;margin-bottom:1.25rem">INFORMASI KENDARAAN</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:.9rem">
             <div>
                 <p style="font-size:.75rem;color:#9ca3af;margin-bottom:.2rem">Pemilik</p>
@@ -51,7 +51,7 @@
     <div style="background:#fff;border:2px solid {{ $booking->invoice->isPaid() ? '#6ee7b7' : '#fde68a' }};border-radius:12px;padding:1.5rem;margin-bottom:1.5rem">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
             <div>
-                <p style="font-size:.72rem;letter-spacing:.12em;color:#f59e0b;font-weight:700;margin-bottom:.4rem">FAKTUR AKTIF</p>
+                <p style="font-size:.72rem;letter-spacing:.12em;color:var(--yellow-dark);font-weight:700;margin-bottom:.4rem">FAKTUR AKTIF</p>
                 <p style="font-weight:700;color:#111;font-size:1rem">{{ $booking->invoice->invoice_number }}</p>
                 <p style="font-size:.85rem;color:#555;margin-top:.2rem">
                     Total: <strong>Rp {{ number_format($booking->invoice->total, 0, ',', '.') }}</strong>
@@ -116,7 +116,7 @@
 
     {{-- FORM UPDATE BOOKING + FAKTUR --}}
     <div style="margin-top:1.5rem; background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06)">
-        <p style="font-size:.72rem;letter-spacing:.12em;color:#f59e0b;font-weight:700;margin-bottom:1.5rem">UPDATE STATUS & FAKTUR</p>
+        <p style="font-size:.72rem;letter-spacing:.12em;color:var(--yellow-dark);font-weight:700;margin-bottom:1.5rem">UPDATE STATUS & FAKTUR</p>
 
                 @if ($errors->any())
         <div style="background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;padding:1rem;border-radius:10px;margin-bottom:1.5rem">
@@ -173,7 +173,7 @@
 
             {{-- SEKSI FAKTUR --}}
             <div>
-                <p style="font-size:.72rem;letter-spacing:.12em;color:#f59e0b;font-weight:700;margin-bottom:1rem">
+                <p style="font-size:.72rem;letter-spacing:.12em;color:var(--yellow-dark);font-weight:700;margin-bottom:1rem">
                     {{ $booking->invoice ? 'UPDATE FAKTUR' : 'BUAT FAKTUR BARU' }}
                 </p>
 
@@ -229,7 +229,7 @@
                     </div>
                     <div style="display:flex;justify-content:space-between;padding-top:.5rem;border-top:1px solid #e5e7eb">
                         <span style="font-weight:700;color:#111">TOTAL</span>
-                        <span id="preview-total" style="font-weight:800;color:#f59e0b;font-size:1rem">Rp 0</span>
+                        <span id="preview-total" style="font-weight:800;color:var(--yellow-dark);font-size:1rem">Rp 0</span>
                     </div>
                 </div>
 
@@ -255,7 +255,7 @@
             </div>
 
             <button type="submit"
-                    style="background:#f59e0b;color:#000;border:none;padding:.9rem;border-radius:8px;font-weight:700;font-size:.95rem;letter-spacing:.05em;cursor:pointer;margin-top:.5rem">
+                    style="background:var(--yellow-dark);color:#000;border:none;padding:.9rem;border-radius:8px;font-weight:700;font-size:.95rem;letter-spacing:.05em;cursor:pointer;margin-top:.5rem">
                 SIMPAN SEMUA PERUBAHAN →
             </button>
         </form>

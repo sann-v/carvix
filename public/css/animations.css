@@ -1,5 +1,5 @@
 /* =============================================
-   CARVIX — ANIMATION CSS
+   Skensa Auto Service — ANIMATION CSS
    Taruh file ini di: public/css/animations.css
    Lalu tambahkan di layouts/app.blade.php dalam <head>:
    <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
@@ -54,7 +54,7 @@ body.cvx-page-exit {
 
 .navbar--scrolled {
   background: rgba(12, 12, 12, 0.97) !important;
-  box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 30px rgba(0, 96, 160, 0.15);
   height: 54px !important;
   padding: 0 2.5rem !important;
 }

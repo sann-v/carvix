@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dasbor — Carvix')
+@section('title', 'Dasbor — Skensa Auto Service')
 
 @section('content')
 
@@ -14,7 +14,7 @@
                     @if($vehicle)
                         Pemantauan presisi untuk {{ $vehicle->year }} {{ $vehicle->brand }} {{ $vehicle->model }}
                     @else
-                        Selamat datang di panel Carvix Anda
+                        Selamat datang di panel Skensa Auto Service Anda
                     @endif
                 </p>
                 @if($vehicle)
@@ -94,7 +94,7 @@
 
                             <div style="margin-top:.6rem">
                                 <a href="{{ route('track.show', $v->vin) }}"
-                                style="font-size:.85rem;color:#f59e0b;text-decoration:none;font-weight:600">
+                                style="font-size:.85rem;color:var(--yellow-dark);text-decoration:none;font-weight:600">
                                     Lacak Kendaraan
                                 </a>
                             </div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Faktur Digital — Carvix')
+@section('title', 'Faktur Digital — Skensa Auto Service')
 
 @push('styles')
 <style>
@@ -18,7 +18,7 @@
         <div class="invoice-actions">
             <div>
                 <a href="{{ route('history') }}"
-                   style="font-size:.82rem;color:var(--orange);font-weight:600;text-decoration:none">← Kembali ke Riwayat</a>
+                   style="font-size:.82rem;color:var(--yellow);font-weight:600;text-decoration:none">← Kembali ke Riwayat</a>
                 <h2 style="margin-top:.5rem">Faktur Digital</h2>
             </div>
             @if(isset($invoice))
@@ -46,11 +46,11 @@
                 <div class="invoice-brand">
                     <span class="logo-icon large">◈</span>
                     <div>
-                        <h2>CARVIX</h2>
+                        <h2>Skensa Auto Service</h2>
                         <p>Skensa Auto Service</p>
                         <p>Jl. Cokroaminoto No.84, Pemecutan Kaja </p>
                         <p>Denpasar Utara </p>
-                        <p>+62 812 3871 6369 · info@carvix.id</p>
+                        <p>+62 812 3871 6369 · info@Skensa Auto Service.id</p>
                     </div>
                 </div>
                 <div class="invoice-meta">
@@ -139,7 +139,7 @@
                     </div>
 
                     <a href="https://wa.me/6281238716369?text={{ urlencode(
-                        'Halo Admin Carvix, saya ingin konfirmasi pembayaran invoice ' .
+                        'Halo Admin Skensa Auto Service, saya ingin konfirmasi pembayaran invoice ' .
                         $invoice->invoice_number
                     ) }}"
                     target="_blank"
@@ -162,7 +162,7 @@
             {{-- Footer faktur --}}
             <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center;color:var(--text-l);font-size:.78rem">
                 <p>Terima kasih telah mempercayakan kendaraan Anda kepada <strong>Skensa Auto Service</strong></p>
-                <p style="margin-top:.3rem">Pertanyaan? Hubungi <strong>+62 812 3871 6369</strong> atau <strong>info@carvix.id</strong></p>
+                <p style="margin-top:.3rem">Pertanyaan? Hubungi <strong>+62 812 3871 6369</strong> atau <strong>info@Skensa Auto Service.id</strong></p>
             </div>
         </div>
 

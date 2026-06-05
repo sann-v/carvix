@@ -12,7 +12,7 @@
     {{-- Stats --}}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2.5rem">
         @foreach([
-            ['label'=>'Menunggu',    'key'=>'pending',     'color'=>'#f59e0b', 'bg'=>'#fef3c7'],
+            ['label'=>'Menunggu',    'key'=>'pending',     'color'=>'var(--yellow-dark)', 'bg'=>'#fef3c7'],
             ['label'=>'Dikonfirmasi','key'=>'confirmed',   'color'=>'#2563eb', 'bg'=>'#dbeafe'],
             ['label'=>'Dalam Proses','key'=>'in_progress', 'color'=>'#7c3aed', 'bg'=>'#ede9fe'],
             ['label'=>'Selesai',     'key'=>'completed',   'color'=>'#059669', 'bg'=>'#d1fae5'],
@@ -27,13 +27,13 @@
     {{-- Recent Bookings --}}
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
         <h2 style="font-size:1.1rem;font-weight:700;color:#111">Booking Terbaru</h2>
-        <a href="{{ route('admin.bookings.index') }}" style="font-size:.85rem;color:#f59e0b;font-weight:600;text-decoration:none">Lihat semua →</a>
+        <a href="{{ route('admin.bookings.index') }}" style="font-size:.85rem;color:var(--yellow-dark);font-weight:600;text-decoration:none">Lihat semua →</a>
     </div>
 
     <div style="display:grid;gap:.75rem">
         @forelse($recentBookings as $b)
         @php
-            $colors = ['pending'=>'#f59e0b','confirmed'=>'#2563eb','in_progress'=>'#7c3aed','completed'=>'#059669','cancelled'=>'#dc2626'];
+            $colors = ['pending'=>'var(--yellow-dark)','confirmed'=>'#2563eb','in_progress'=>'#7c3aed','completed'=>'#059669','cancelled'=>'#dc2626'];
             $bgs    = ['pending'=>'#fef3c7','confirmed'=>'#dbeafe','in_progress'=>'#ede9fe','completed'=>'#d1fae5','cancelled'=>'#fee2e2'];
             $labels = ['pending'=>'Menunggu','confirmed'=>'Dikonfirmasi','in_progress'=>'Dalam Proses','completed'=>'Selesai','cancelled'=>'Dibatalkan'];
         @endphp
@@ -46,7 +46,7 @@
                 <span style="font-size:.75rem;padding:4px 12px;border-radius:999px;background:{{ $bgs[$b->status] ?? '#f3f4f6' }};color:{{ $colors[$b->status] ?? '#666' }};font-weight:600">
                     {{ $labels[$b->status] ?? $b->status }}
                 </span>
-                <a href="{{ route('admin.bookings.show', $b->id) }}" style="font-size:.85rem;color:#f59e0b;font-weight:600;text-decoration:none">Detail →</a>
+                <a href="{{ route('admin.bookings.show', $b->id) }}" style="font-size:.85rem;color:var(--yellow-dark);font-weight:600;text-decoration:none">Detail →</a>
             </div>
         </div>
         @empty

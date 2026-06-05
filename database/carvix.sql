@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `carvix`
+-- Database: `Skensa Auto Service`
 --
 
 -- --------------------------------------------------------
@@ -280,7 +280,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'RIZKY', 'rizkyramadhan8057@gmail.com', 'user', '+6281238085758', NULL, '$2y$12$Amiipt4Q.Yvb//GOu.Tej.aHcRMk5KVXwZY/DlceOUfsDnna/bbTu', NULL, '2026-05-17 07:55:12', '2026-05-17 07:55:12'),
-(2, 'Admin Carvix', 'admin@carvix.com', 'admin', '08123456789', NULL, '$2y$12$MkbdTWgr2ROgzKewziayeezIg3Bw7lXPug1XhlZnkhCt6JREoc96C', NULL, '2026-05-17 08:16:45', '2026-05-17 08:16:45'),
+(2, 'Admin Skensa Auto Service', 'admin@Skensa Auto Service.com', 'admin', '08123456789', NULL, '$2y$12$MkbdTWgr2ROgzKewziayeezIg3Bw7lXPug1XhlZnkhCt6JREoc96C', NULL, '2026-05-17 08:16:45', '2026-05-17 08:16:45'),
 (3, 'Falihah Nailatusy Syarafah', 'falihahnayla12@gmail.com', 'user', '089505434624', NULL, '$2y$12$e2k0FSSHRO56yTRQd4vkv.lgvmdpcmJfRQc9ksZSu2isY9e.0raBe', NULL, '2026-05-18 05:03:59', '2026-05-18 05:03:59'),
 (4, 'gus sanjaya', 'idabagusputusanjaya@gmail.com', 'user', '081238716369', NULL, '$2y$12$YlMMf2aNPfgYdrIfx56GfuwsfIX8EHugIfXVuYnGpugFhrxIQr5dy', NULL, '2026-05-18 05:06:22', '2026-05-18 05:06:22'),
 (5, 'bap', 'bapanci@gmail.com', 'user', '676767676767', NULL, '$2y$12$vC9Re/T5vRyiCuxKcmE4sO0TuaxgeY7ZHt4JUtVKjnKYC7yEN89pC', 'agFHvwqqkIwTy0cIIvxh1W8OkhS2IGhQFdoucL82h2RxOhglfIF1PE3yk4g4', '2026-05-18 05:36:44', '2026-05-18 05:36:44');

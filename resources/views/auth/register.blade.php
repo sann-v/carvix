@@ -9,7 +9,7 @@
         <div class="auth-card">
             <div class="auth-brand">
                 <span class="logo-icon" style="font-size:1.5rem">◈</span>
-                <span class="logo-text" style="font-size:1.3rem">CARVIX</span>
+                <span class="logo-text" style="font-size:1.3rem">Skensa Auto Service</span>
             </div>
 
             <h1 class="auth-title">Buat Akun Baru</h1>

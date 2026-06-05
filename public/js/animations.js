@@ -1,5 +1,5 @@
 /**
- * CARVIX — FULL ANIMATION ENGINE
+ * Skensa Auto Service — FULL ANIMATION ENGINE
  * Taruh file ini di: public/js/animations.js
  * Lalu tambahkan di layouts/app.blade.php sebelum </body>:
  * <script src="{{ asset('js/animations.js') }}"></script>

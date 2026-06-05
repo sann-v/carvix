@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carvix Admin — @yield('title', 'Panel Admin')</title>
+    <title>Skensa Auto Service Admin — @yield('title', 'Panel Admin')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -13,12 +13,12 @@
 <body>
 
 @auth
-<nav class="navbar" style="border-bottom:1px solid #f59e0b33">
+<nav class="navbar" style="border-bottom:1px solid var(--yellow-dark)33">
 
     <a href="{{ route('admin.dashboard') }}" class="navbar-brand">
-        <span class="logo-icon" style="color:#f59e0b">◈</span>
-        <span class="logo-text">CARVIX</span>
-        <span style="font-size:.65rem;letter-spacing:.15em;background:#f59e0b22;color:#f59e0b;padding:3px 10px;border-radius:999px;margin-left:.5rem">ADMIN</span>
+        <span class="logo-icon" style="color:var(--yellow-dark)">◈</span>
+        <span class="logo-text">Skensa Auto Service</span>
+        <span style="font-size:.65rem;letter-spacing:.15em;background:var(--yellow-dark)22;color:var(--yellow-dark);padding:3px 10px;border-radius:999px;margin-left:.5rem">ADMIN</span>
     </a>
 
     <ul class="nav-links">
@@ -36,7 +36,7 @@
         <div style="position:relative" id="adminMenu">
             <button onclick="toggleAdminMenu()"
                     style="display:flex;align-items:center;gap:.6rem;background:transparent;border:1px solid #333;border-radius:999px;padding:.4rem .9rem .4rem .5rem;cursor:pointer;color:#ffffff">
-                <div style="width:30px;height:30px;border-radius:50%;background:#f59e0b22;color:#f59e0b;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem">
+                <div style="width:30px;height:30px;border-radius:50%;background:var(--yellow-dark)22;color:var(--yellow-dark);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem">
                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                 </div>
                 <span style="font-size:.85rem;font-weight:500">{{ Auth::user()->name }}</span>
@@ -51,7 +51,7 @@
 
                 <div style="padding:.75rem 1rem;border-bottom:1px solid #222;margin-bottom:.25rem">
                     <p style="font-weight:600;font-size:.9rem; color: #ffffff;">{{ Auth::user()->name }}</p>
-                    <p style="font-size:.72rem;color:#f59e0b;letter-spacing:.08em;margin-top:.15rem">ADMIN</p>
+                    <p style="font-size:.72rem;color:var(--yellow-dark);letter-spacing:.08em;margin-top:.15rem">ADMIN</p>
                 </div>
 
                 <a href="{{ route('admin.dashboard') }}"

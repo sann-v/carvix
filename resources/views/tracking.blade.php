@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Lacak Kendaraan — Carvix')
+@section('title', 'Lacak Kendaraan — Skensa Auto Service')
 
 @section('content')
 
@@ -155,7 +155,7 @@
                     <p class="eyebrow">TEKNISI YANG MENANGANI</p>
                     @if($techName)
                         <h3>{{ $techName }}</h3>
-                        <p>Teknisi Resmi Carvix</p>
+                        <p>Teknisi Resmi Skensa Auto Service</p>
                         <span class="specialist-status-dot">● Sedang aktif menangani kendaraan Anda</span>
                     @else
                         <h3 style="color:var(--text-m)">Belum Ditugaskan</h3>
