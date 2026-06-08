@@ -69,23 +69,27 @@
                 </span>
                 {{-- TOMBOL CEPAT UBAH STATUS BAYAR --}}
                 @if(!$booking->invoice->isPaid())
-                <form action="{{ route('admin.invoice.payment', $booking->invoice->id) }}" method="POST" style="display:inline">
+                <form id="markPaidForm"
+                    action="{{ route('admin.invoice.payment', $booking->invoice->id) }}"
+                    method="POST" style="display:inline">
                     @csrf
                     <input type="hidden" name="payment_status" value="paid">
-                    <button type="submit"
-                            onclick="return confirm('Tandai faktur ini sebagai LUNAS?')"
+                    <button type="button"
+                            onclick="confirmPaid()"
                             style="background:#059669;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer">
-                        ✓ Tandai Lunas
+                        Tandai Lunas
                     </button>
                 </form>
                 @else
-                <form action="{{ route('admin.invoice.payment', $booking->invoice->id) }}" method="POST" style="display:inline">
+                <form id="cancelPaidForm"
+                    method="POST"
+                    action="{{ route('admin.invoice.payment', $booking->invoice->id) }}">
                     @csrf
                     <input type="hidden" name="payment_status" value="unpaid">
-                    <button type="submit"
-                            onclick="return confirm('Batalkan status lunas faktur ini?')"
+                    <button type="button"
+                            onclick="confirmCancelPaid()"
                             style="background:#dc2626;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer">
-                        ✕ Batal Lunas
+                        Batal Lunas
                     </button>
                 </form>
                 @endif
@@ -136,14 +140,31 @@
             @csrf
 
             {{-- Status Booking --}}
-            <div>
-                <label style="font-size:.78rem;letter-spacing:.08em;color:#374151;font-weight:600;display:block;margin-bottom:.5rem">STATUS BOOKING</label>
-                <select name="status" style="width:100%;background:#f9fafb;border:1px solid #d1d5db;color:#111;padding:.75rem 1rem;border-radius:8px;font-size:.9rem;font-weight:500">
-                    @foreach(['pending'=>'Menunggu','confirmed'=>'Dikonfirmasi','in_progress'=>'Dalam Proses','completed'=>'Selesai','cancelled'=>'Dibatalkan'] as $val => $lbl)
-                    <option value="{{ $val }}" {{ $booking->status === $val ? 'selected' : '' }}>{{ $lbl }}</option>
-                    @endforeach
-                </select>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+
+                @foreach([
+                    'pending' => 'Pending',
+                    'confirmed' => 'Confirmed',
+                    'in_progress' => 'Progress',
+                    'completed' => 'Selesai',
+                    'cancelled' => 'Dibatalkan'
+                ] as $value => $label)
+
+                <button
+                    type="button"
+                    onclick="document.getElementById('status').value='{{ $value }}'; updateStatusButtons(this)"
+                    class="status-btn {{ $booking->status == $value ? 'active' : '' }}">
+                    {{ $label }}
+                </button>
+
+                @endforeach
+
             </div>
+
+            <input type="hidden"
+                name="status"
+                id="status"
+                value="{{ $booking->status }}">
 
             {{-- Teknisi --}}
             <div>
@@ -244,14 +265,26 @@
                 </div>
 
                 {{-- Status Pembayaran --}}
-                <div style="margin-top:1rem">
-                    <label style="font-size:.78rem;letter-spacing:.08em;color:#374151;font-weight:600;display:block;margin-bottom:.5rem">STATUS PEMBAYARAN FAKTUR</label>
-                    <select name="payment_status"
-                            style="width:100%;background:#f9fafb;border:1px solid #d1d5db;color:#111;padding:.75rem 1rem;border-radius:8px;font-size:.9rem;font-weight:500">
-                        <option value="unpaid"    {{ ($booking->invoice?->payment_status ?? 'unpaid') === 'unpaid'    ? 'selected' : '' }}> Belum Lunas</option>
-                        <option value="paid"      {{ ($booking->invoice?->payment_status ?? '') === 'paid'            ? 'selected' : '' }}> Lunas</option>
-                    </select>
+                <label style="font-size:.78rem;letter-spacing:.08em;color:#374151;font-weight:600;display:block;margin-top:1rem">STATUS PEMBAYARAN</label>
+                <div style="display:flex;gap:.5rem">
+                    <button type="button"
+                        onclick="document.getElementById('payment_status').value='unpaid'"
+                        class="payment-btn {{ $booking->invoice?->payment_status == 'unpaid' ? 'active-red' : '' }}">
+                        Belum Lunas
+                    </button>
+
+                    <button type="button"
+                        onclick="document.getElementById('payment_status').value='paid'"
+                        class="payment-btn {{ $booking->invoice?->payment_status == 'paid' ? 'active-green' : '' }}">
+                        Lunas
+                    </button>
+
                 </div>
+
+                <input type="hidden"
+                    name="payment_status"
+                    id="payment_status"
+                    value="{{ $booking->invoice?->payment_status ?? 'unpaid' }}">
             </div>
 
             <button type="submit"
@@ -262,6 +295,41 @@
     </div>
 
 </div>
+
+
+<style>
+.status-btn{
+    border:none;
+    padding:10px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    background:#e5e7eb;
+    font-weight:600;
+}
+
+.status-btn.active{
+    background:#facc15;
+    color:#000;
+}
+
+.payment-btn{
+    border:none;
+    margin-top:1rem;
+    padding:10px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    background:#e5e7eb;
+    font-weight:600;
+}
+.payment-btn.active-green{
+    background:#6ee7b7;
+    color:#065f46;
+}
+.payment-btn.active-red{
+    background:#fca5a5;
+    color:#991b1b;
+}
+</style>
 
 <script>
 let itemIndex = {{ $booking->invoice && $booking->invoice->items ? count($booking->invoice->items) : 1 }};
@@ -304,5 +372,49 @@ function recalc() {
 // Hitung saat halaman dimuat
 document.querySelectorAll('.inv-item-row-admin input').forEach(el => el.addEventListener('input', recalc));
 recalc();
+
+// Update tampilan tombol status saat diklik
+function updateStatusButtons(clicked){
+
+    document
+        .querySelectorAll('.status-btn')
+        .forEach(btn => btn.classList.remove('active'));
+
+    clicked.classList.add('active');
+}
+
+// Konfirmasi batal status lunas
+function confirmCancelPaid() {
+    Swal.fire({
+        title: 'Batalkan Status Lunas?',
+        text: 'Status pembayaran akan berubah menjadi Belum Lunas.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, Batalkan',
+        cancelButtonText: 'Tutup',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('cancelPaidForm').submit();
+        }
+    });
+}
+
+// Konfirmasi status lunas
+function confirmPaid() {
+    Swal.fire({
+        title: 'Konfirmasi Status Lunas?',
+        text: 'Status pembayaran akan berubah menjadi Lunas.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, Konfirmasi',
+        cancelButtonText: 'Tutup',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('markPaidForm').submit();
+        }
+    });
+}
 </script>
 @endsection

@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skensa Auto Service Admin — @yield('title', 'Panel Admin')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
     @stack('styles')
 </head>
+
 <body>
 
 @auth
 <nav class="navbar" style="border-bottom:1px solid var(--yellow-dark)33">
 
     <a href="{{ route('admin.dashboard') }}" class="navbar-brand">
-        <span class="logo-icon" style="color:var(--yellow-dark)">◈</span>
+        <img src="{{ asset('images/logo.png') }}" alt="Carvix Logo" class="logo-icon large">
         <span class="logo-text">Skensa Auto Service</span>
         <span style="font-size:.65rem;letter-spacing:.15em;background:var(--yellow-dark)22;color:var(--yellow-dark);padding:3px 10px;border-radius:999px;margin-left:.5rem">ADMIN</span>
     </a>
@@ -116,5 +117,8 @@ document.addEventListener('click', function(e) {
     }
 });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

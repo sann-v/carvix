@@ -48,4 +48,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     // ← BARU: update status pembayaran faktur
     Route::post('/invoice/{id}/payment', [AdminInvoiceController::class, 'updatePayment'])->name('invoice.payment');
+    Route::post('/bookings/{id}/status/{status}',[AdminBookingController::class, 'quickUpdate'] )->name('bookings.quick-update');
 });

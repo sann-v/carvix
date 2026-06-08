@@ -5,7 +5,6 @@
 
 <section class="page-hero">
     <div class="page-hero-content">
-        <p class="hero-eyebrow">PEMANTAUAN WAKTU NYATA</p>
         <h1>Lacak<br><span class="accent">Servis Kendaraan</span></h1>
         <p>Masukkan nomor VIN untuk melihat status layanan kendaraan Anda secara langsung.</p>
     </div>

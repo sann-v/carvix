@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Skensa Auto Service — Sistem Manajemen Service Kendaraan Digital')
+@section('title', 'Skensa Auto Service')
 
 @section('content')
 
@@ -8,67 +8,62 @@
         $pendingInvoice = null;
         if (auth()->check()) {
             $pendingInvoice = \App\Models\Invoice::whereHas('booking.vehicle', function ($q) {
-                $q->where('user_id', auth()->id())
-                    ->orWhere('email', auth()->user()->email);
-            })->where('payment_status', 'unpaid')->with('booking.vehicle')->latest()->first();
+                $q->where('user_id', auth()->id())->orWhere('email', auth()->user()->email);
+            })
+                ->where('payment_status', 'unpaid')
+                ->with('booking.vehicle')
+                ->latest()
+                ->first();
         }
     @endphp
 
     <!-- ══════════════════════════════════════════
-         HERO SECTION
-    ══════════════════════════════════════════ -->
+                             HERO SECTION
+                        ══════════════════════════════════════════ -->
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-inner">
             <div class="hero-left">
-                <span class="hero-tag">SKENSA AUTO SERVICE</span>
+
                 <h1 class="hero-heading">
-                    Sistem Manajemen Service Kendaraan Digital
+                    Sistem Service Kendaraan Digital <br>
+                    <span class="hero-accent">Skensa Auto Service</span>
                 </h1>
+
                 <p class="hero-desc">
                     Dengan Skensa Auto Service, Anda dapat melihat perkembangan service kendaraan secara langsung,
                     mendapatkan informasi yang jelas, serta menikmati proses perawatan kendaraan yang lebih praktis dan
                     transparan.
                 </p>
                 <div class="hero-btns">
-                    <a href="{{ route('booking') }}" class="hbtn hbtn-primary">PESAN LAYANAN</a>
-                    <a href="{{ route('services') }}" class="hbtn hbtn-ghost">LIHAT LAYANAN</a>
+                    <a href="{{ route('booking') }}" class="hbtn hbtn-primary">
+                        Pesan Layanan →
+                    </a>
+
+                    <a href="{{ route('services') }}" class="hbtn hbtn-ghost">
+                        Lihat Layanan
+                    </a>
                 </div>
             </div>
             <div class="hero-right">
-                <div class="qs-card">
-                    <p class="qs-title">Pesan Cepat</p>
-                    <form action="{{ route('booking') }}" method="GET">
-                        <div class="qs-field">
-                            <label>VIN KENDARAAN (Opsional)</label>
-                            <input type="text" name="vin" placeholder="Contoh: 1HGCM82633A123456">
-                        </div>
-                        <div class="qs-row">
-                            <div class="qs-field">
-                                <label>JENIS LAYANAN</label>
-                                <select name="service_type">
-                                    <option value="Full Maintenance">Perawatan Lengkap</option>
-                                    <option value="Diagnostic">Diagnostik</option>
-                                    <option value="Engine Service">Layanan Mesin</option>
-                                    <option value="Brake Service">Layanan Rem</option>
-                                    <option value="Suspension">Suspensi</option>
-                                </select>
-                            </div>
-                            <div class="qs-field">
-                                <label>TANGGAL PILIHAN</label>
-                                <input type="date" name="service_date" min="{{ date('Y-m-d') }}">
-                            </div>
-                        </div>
-                        <button type="submit" class="qs-btn">CEK KETERSEDIAAN</button>
-                    </form>
+                <div class="hero-visual">
+
+                    <img src="{{ asset('images/hero-car.jpeg') }}" alt="Skensa Auto Service" class="hero-image">
+
+                    <div class="floating-card">
+                        <span class="floating-number">500+</span>
+                        <p>Kendaraan Telah Diservis</p>
+                    </div>
+
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
     <!-- ══════════════════════════════════════════
-         MODULES SECTION
-    ══════════════════════════════════════════ -->
+                             MODULES SECTION
+                        ══════════════════════════════════════════ -->
     <section class="modules-section">
         <div class="modules-inner">
 
@@ -117,15 +112,14 @@
             </div>
 
             <!-- ══════════════════════════════════════════
-                 INVOICE ROW
-                 - Ada tagihan unpaid  → 2 kolom (kiri + preview faktur kanan)
-                 - Tidak ada / sudah lunas → kiri full width
-            ══════════════════════════════════════════ -->
+                                     INVOICE ROW
+                                     - Ada tagihan unpaid  → 2 kolom (kiri + preview faktur kanan)
+                                     - Tidak ada / sudah lunas → kiri full width
+                                ══════════════════════════════════════════ -->
             <div class="invoice-row {{ !$pendingInvoice ? 'invoice-row-fullwidth' : '' }}">
 
                 {{-- KIRI — selalu tampil --}}
                 <div class="invoice-row-left">
-                    <span class="invoice-row-badge">FITUR UNGGULAN</span>
                     <h3>Penagihan Transparan & Digital</h3>
                     <p>Tidak ada biaya tersembunyi. Setiap layanan tercatat dengan rincian lengkap — suku cadang, biaya
                         jasa, dan pajak ditampilkan secara jelas. Faktur digital diterbitkan otomatis setelah layanan
@@ -169,14 +163,14 @@
                 </div>
 
                 {{-- KANAN — hanya muncul jika ada tagihan belum lunas --}}
-                @if($pendingInvoice)
+                @if ($pendingInvoice)
                     <div class="invoice-row-right">
                         <div class="inv-preview-enhanced">
 
                             <div class="inv-preview-top">
                                 <span
-                                    style="color:var(--yellow);font-weight:800;font-family:var(--font-d);font-size:.85rem;letter-spacing:.05em">
-                                    ◈ Skensa Auto Service
+                                    style="color:var(--dark);font-weight:800;font-family:var(--font-d);font-size:.85rem;letter-spacing:.05em">
+                                    Skensa Auto Service
                                 </span>
                                 <span
                                     style="font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:999px;background:#fef3c7;color:#92400e;border:1px solid #fde68a">
@@ -203,7 +197,8 @@
                                 @forelse($pendingInvoice->items ?? [] as $item)
                                     <div class="inv-item-row">
                                         <span class="inv-item-name">{{ $item['description'] }}</span>
-                                        <span class="inv-item-price">Rp {{ number_format($item['unit_price'], 0, ',', '.') }}</span>
+                                        <span class="inv-item-price">Rp
+                                            {{ number_format($item['unit_price'], 0, ',', '.') }}</span>
                                     </div>
                                 @empty
                                     <div class="inv-item-row">
@@ -232,10 +227,11 @@
                             </div>
 
                             {{-- Jatuh tempo --}}
-                            @if(\Carbon\Carbon::parse($pendingInvoice->due_date)->isPast())
+                            @if (\Carbon\Carbon::parse($pendingInvoice->due_date)->isPast())
                                 <p
                                     style="font-size:.72rem;color:#dc2626;font-weight:700;margin-bottom:.75rem;text-align:center;background:#fee2e2;padding:.4rem;border-radius:6px">
-                                    Melewati jatuh tempo: {{ \Carbon\Carbon::parse($pendingInvoice->due_date)->format('d M Y') }}
+                                    Melewati jatuh tempo:
+                                    {{ \Carbon\Carbon::parse($pendingInvoice->due_date)->format('d M Y') }}
                                 </p>
                             @else
                                 <p style="font-size:.72rem;color:#92400e;margin-bottom:.75rem;text-align:center">
@@ -263,8 +259,8 @@
     </section>
 
     <!-- ══════════════════════════════════════════
-         HERITAGE SECTION
-    ══════════════════════════════════════════ -->
+                             HERITAGE SECTION
+                        ══════════════════════════════════════════ -->
     <section class="heritage-section">
         <div class="heritage-inner">
             <div class="heritage-img-wrap">
@@ -329,8 +325,8 @@
     </section>
 
     <!-- ══════════════════════════════════════════
-         TRACK CTA SECTION
-    ══════════════════════════════════════════ -->
+                             TRACK CTA SECTION
+                        ══════════════════════════════════════════ -->
     <section class="track-cta-section">
         <div class="track-cta-inner">
             <div class="track-cta-left">
@@ -342,14 +338,15 @@
             </div>
             <div class="track-cta-right">
                 <div class="track-cta-form">
-                    <input type="text" id="homVin" placeholder="Masukkan nomor VIN..." class="track-input-home"  style="color:var(--text-m);">
+                    <input type="text" id="homVin" placeholder="Masukkan nomor VIN..." class="track-input-home"
+                        style="color:var(--text-m);">
                     <button
                         onclick="var v=document.getElementById('homVin').value.trim();if(v)window.location='/track/'+v;else window.location='{{ route('track') }}'"
                         class="track-cta-btn">
                         LACAK SEKARANG →
                     </button>
                 </div>
-                <p style="font-size:.75rem;color:rgba(255,255,255,0.4);margin-top:.75rem">
+                <p style="font-size:.75rem;color:var(--text-m);margin-top:.75rem">
                     Ingin cek status tanpa VIN?
                     <a href="{{ route('track') }}" style="color:var(--yellow)">Klik di sini</a>
                 </p>
@@ -360,7 +357,7 @@
 @endsection
 @push('scripts')
     <script>
-        (function () {
+        (function() {
             const track = document.getElementById('heritageSliderTrack');
             const dotsWrap = document.getElementById('heritageSliderDots');
             if (!track || !dotsWrap) return;
@@ -371,23 +368,28 @@
             let timer = null;
 
             // Build dots
-            slides.forEach(function (_, i) {
+            slides.forEach(function(_, i) {
                 const dot = document.createElement('button');
                 dot.className = 'heritage-slider-dot' + (i === 0 ? ' active' : '');
                 dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-                dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+                dot.addEventListener('click', function() {
+                    goTo(i);
+                    resetTimer();
+                });
                 dotsWrap.appendChild(dot);
             });
 
             function goTo(index) {
                 current = (index + total) % total;
                 track.style.transform = 'translateX(-' + (current * 100) + '%)';
-                dotsWrap.querySelectorAll('.heritage-slider-dot').forEach(function (d, i) {
+                dotsWrap.querySelectorAll('.heritage-slider-dot').forEach(function(d, i) {
                     d.classList.toggle('active', i === current);
                 });
             }
 
-            function next() { goTo(current + 1); }
+            function next() {
+                goTo(current + 1);
+            }
 
             function resetTimer() {
                 clearInterval(timer);
@@ -397,17 +399,28 @@
             // Pause on hover
             var slider = document.getElementById('heritageSlider');
             if (slider) {
-                slider.addEventListener('mouseenter', function () { clearInterval(timer); });
+                slider.addEventListener('mouseenter', function() {
+                    clearInterval(timer);
+                });
                 slider.addEventListener('mouseleave', resetTimer);
             }
 
             // Swipe support
             var touchStartX = 0;
-            track.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-            track.addEventListener('touchend', function (e) {
+            track.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+            }, {
+                passive: true
+            });
+            track.addEventListener('touchend', function(e) {
                 var diff = touchStartX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); resetTimer(); }
-            }, { passive: true });
+                if (Math.abs(diff) > 40) {
+                    goTo(diff > 0 ? current + 1 : current - 1);
+                    resetTimer();
+                }
+            }, {
+                passive: true
+            });
 
             resetTimer();
         })();

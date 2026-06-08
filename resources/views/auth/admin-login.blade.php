@@ -8,7 +8,7 @@
 
         <div class="auth-card">
             <div class="auth-brand">
-                <span class="logo-icon" style="font-size:1.5rem">◈</span>
+                <img src="{{ asset('images/logo.png') }}" alt="Carvix Logo" class="logo-icon large">
                 <span class="logo-text" style="font-size:1.3rem">Skensa Auto Service</span>
             </div>
 

@@ -44,7 +44,7 @@
             {{-- HEADER --}}
             <div class="invoice-header">
                 <div class="invoice-brand">
-                    <span class="logo-icon large">◈</span>
+                    <img src="{{ asset('images/logo.png') }}" alt="Carvix Logo" class="logo-icon large">
                     <div>
                         <h2>Skensa Auto Service</h2>
                         <p>Skensa Auto Service</p>

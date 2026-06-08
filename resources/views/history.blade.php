@@ -53,7 +53,7 @@
                         @if($booking->invoice)
                             <p class="history-price">Rp {{ number_format($booking->invoice->total, 0, ',', '.') }}</p>
                             <span style="font-size:0.72rem;color:{{ $booking->invoice->payment_status === 'paid' ? '#16a34a' : '#d97706' }};font-weight:600">
-                                {{ $booking->invoice->payment_status === 'paid' ? '✓ Lunas' : '⏳ Belum Lunas' }}
+                                {{ $booking->invoice->payment_status === 'paid' ? '✓ Lunas' : 'Belum Lunas' }}
                             </span>
                         @endif
                     </div>

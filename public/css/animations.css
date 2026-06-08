@@ -196,22 +196,6 @@ body.cvx-page-exit {
 }
 
 /* =========================================================
-   HERO ACCENT TYPING CURSOR
-   ========================================================= */
-.hero-accent::after {
-  content: '|';
-  display: inline-block;
-  margin-left: 2px;
-  animation: cvxBlink 0.75s step-end infinite;
-  color: var(--orange, #e8650a);
-}
-
-@keyframes cvxBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
-/* =========================================================
    MOD-DOTS — bouncing dots animasi
    ========================================================= */
 .mod-dots {
@@ -307,7 +291,10 @@ body.cvx-page-exit {
    QUICK SCHEDULE CARD — float up entrance
    ========================================================= */
 .qs-card {
-  animation: cvxCardIn 0.8s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
 }
 
 @keyframes cvxCardIn {
@@ -350,17 +337,18 @@ body.cvx-page-exit {
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* =========================================================
-   LOGO — subtle rotate icon
-   ========================================================= */
-.logo-icon {
-  display: inline-block;
-  animation: cvxLogoSpin 8s linear infinite;
+/* Logo Skensa Auto Service */
+
+.logo-icon.large {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
 
-@keyframes cvxLogoSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+.logo-icon.small {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
 }
 
 /* =========================================================

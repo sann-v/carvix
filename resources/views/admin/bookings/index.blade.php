@@ -72,9 +72,97 @@
             </div>
 
             {{-- Progress Bar --}}
+            @php
+                $isCancelled = $b->status === 'cancelled';
+            @endphp
+
             <div style="background:#f3f4f6;border-radius:999px;height:5px">
-                <div style="background:{{ $colors[$b->status] ?? '#ccc' }};height:5px;border-radius:999px;width:{{ $b->progress ?? 0 }}%;transition:width .3s"></div>
+                <div style="background:{{ $isCancelled ? '#ef4444' : ($colors[$b->status] ?? '#ccc') }};height:5px;border-radius:999px;width:{{ $isCancelled ? '100' : ($b->progress ?? 0) }}%;transition:width .3s"></div>
             </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.5rem">
+
+            {{-- Pending --}}
+            <div style="text-align:center;flex:1">
+                <div style="
+                    width:32px;height:32px;border-radius:50%;margin:auto;
+                    display:flex;align-items:center;justify-content:center;
+                    background:{{ $isCancelled ? '#ef4444' : (in_array($b->status,['pending','confirmed','in_progress','completed']) ? '#10b981' : '#d1d5db') }};
+                    color:white;font-weight:bold;
+                ">
+                    {{ $isCancelled ? '✕' : (in_array($b->status,['confirmed','in_progress','completed']) ? '✓' : '1') }}
+                </div>
+                <small>Pending</small>
+            </div>
+
+            <div style="height:2px;background:{{ $isCancelled ? '#fca5a5' : '#d1d5db' }};flex:1"></div>
+
+            {{-- Confirmed --}}
+            <div style="text-align:center;flex:1">
+                @if(!$isCancelled && $b->status == 'pending')
+                <form method="POST" action="{{ route('admin.bookings.quick-update', [$b->id,'confirmed']) }}">
+                    @csrf
+                    <button style="width:32px;height:32px;border:none;border-radius:50%;background:#d1d5db;color:white;cursor:pointer">2</button>
+                </form>
+                @else
+                <div style="
+                    width:32px;height:32px;border-radius:50%;margin:auto;
+                    display:flex;align-items:center;justify-content:center;
+                    background:{{ $isCancelled ? '#ef4444' : (in_array($b->status,['in_progress','completed']) ? '#10b981' : 'var(--yellow)') }};
+                    color:white;
+                ">
+                    {{ $isCancelled ? '✕' : (in_array($b->status,['in_progress','completed']) ? '✓' : '2') }}
+                </div>
+                @endif
+                <small>Confirmed</small>
+            </div>
+
+            <div style="height:2px;background:{{ $isCancelled ? '#fca5a5' : '#d1d5db' }};flex:1"></div>
+
+            {{-- Progress --}}
+            <div style="text-align:center;flex:1">
+                @if(!$isCancelled && $b->status == 'confirmed')
+                <form method="POST" action="{{ route('admin.bookings.quick-update', [$b->id,'in_progress']) }}">
+                    @csrf
+                    <button style="width:32px;height:32px;border:none;border-radius:50%;background:#d1d5db;color:white;cursor:pointer">3</button>
+                </form>
+                @else
+                <div style="
+                    width:32px;height:32px;border-radius:50%;margin:auto;
+                    display:flex;align-items:center;justify-content:center;
+                    background:{{ $isCancelled ? '#ef4444' : ($b->status == 'completed' ? '#10b981' : 'var(--yellow)') }};
+                    color:white;
+                ">
+                    {{ $isCancelled ? '✕' : ($b->status == 'completed' ? '✓' : '3') }}
+                </div>
+                @endif
+                <small>Progress</small>
+            </div>
+
+            <div style="height:2px;background:{{ $isCancelled ? '#fca5a5' : '#d1d5db' }};flex:1"></div>
+
+            {{-- Completed --}}
+            <div style="text-align:center;flex:1">
+                @if(!$isCancelled && $b->status == 'in_progress')
+                <form method="POST" action="{{ route('admin.bookings.quick-update', [$b->id,'completed']) }}">
+                    @csrf
+                    <button style="width:32px;height:32px;border:none;border-radius:50%;background:#d1d5db;color:white;cursor:pointer">4</button>
+                </form>
+                @else
+                <div style="
+                    width:32px;height:32px;border-radius:50%;margin:auto;
+                    display:flex;align-items:center;justify-content:center;
+                    background:{{ $isCancelled ? '#ef4444' : ($b->status == 'completed' ? '#059669' : 'var(--yellow)') }};
+                    color:white;
+                ">
+                    {{ $isCancelled ? '✕' : ($b->status == 'completed' ? '✓' : '4') }}
+                </div>
+                @endif
+                <small>Selesai</small>
+            </div>
+
+
+        </div>
 
             <a href="{{ route('admin.bookings.show', $b->id) }}"
                style="text-align:center;padding:.65rem;background:var(--yellow-dark);color:#000;border-radius:8px;font-size:.85rem;font-weight:700;text-decoration:none">

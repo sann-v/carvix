@@ -10,6 +10,26 @@ use Illuminate\Support\Str;
 
 class AdminBookingController extends Controller
 {
+    public function quickUpdate($id, $status)
+    {
+        $booking = Booking::findOrFail($id);
+
+        $progressMap = [
+            'pending' => 0,
+            'confirmed' => 25,
+            'in_progress' => 60,
+            'completed' => 100,
+            'cancelled' => 0,
+        ];
+
+        $booking->update([
+            'status' => $status,
+            'progress' => $progressMap[$status] ?? 0,
+        ]);
+
+        return back()->with('success', 'Status berhasil diperbarui.');
+    }
+
     public function index(Request $request)
     {
         $status = $request->query('status', 'all');
