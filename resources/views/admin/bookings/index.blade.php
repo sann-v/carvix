@@ -41,6 +41,10 @@
             $colors = ['pending'=>'var(--yellow-dark)','confirmed'=>'#2563eb','in_progress'=>'#7c3aed','completed'=>'#059669','cancelled'=>'#dc2626'];
             $bgs    = ['pending'=>'#fef3c7','confirmed'=>'#dbeafe','in_progress'=>'#ede9fe','completed'=>'#d1fae5','cancelled'=>'#fee2e2'];
             $labels = ['pending'=>'Menunggu','confirmed'=>'Dikonfirmasi','in_progress'=>'Dalam Proses','completed'=>'Selesai','cancelled'=>'Dibatalkan'];
+            $payColors = ['paid'=>'#059669','unpaid'=>'#d97706','cancelled'=>'#dc2626'];
+            $payBgs    = ['paid'=>'#d1fae5','unpaid'=>'#fef3c7','cancelled'=>'#fee2e2'];
+            $payLabels = ['paid'=>'Lunas','unpaid'=>'Belum Lunas','cancelled'=>'Dibatalkan'];
+            $payStatus = $b->invoice->payment_status ?? null;
         @endphp
         <div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;box-shadow:0 2px 8px rgba(0,0,0,.06)">
 
@@ -51,9 +55,16 @@
                     <p style="font-weight:700;color:#111">{{ $b->vehicle->owner_name ?? 'Tanpa Nama' }}</p>
                     <p style="font-size:.85rem;color:#666;margin-top:.1rem">{{ $b->service_type }}</p>
                 </div>
-                <span style="font-size:.72rem;padding:4px 10px;border-radius:999px;background:{{ $bgs[$b->status] ?? '#f3f4f6' }};color:{{ $colors[$b->status] ?? '#666' }};font-weight:700;white-space:nowrap">
-                    {{ $labels[$b->status] ?? $b->status }}
-                </span>
+                <div style="display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;justify-content:flex-end">
+                    @if($payStatus)
+                    <span style="font-size:.72rem;padding:4px 10px;border-radius:999px;background:{{ $payBgs[$payStatus] ?? '#f3f4f6' }};color:{{ $payColors[$payStatus] ?? '#666' }};font-weight:700;white-space:nowrap">
+                        {{ $payLabels[$payStatus] ?? $payStatus }}
+                    </span>
+                    @endif
+                    <span style="font-size:.72rem;padding:4px 10px;border-radius:999px;background:{{ $bgs[$b->status] ?? '#f3f4f6' }};color:{{ $colors[$b->status] ?? '#666' }};font-weight:700;white-space:nowrap">
+                        {{ $labels[$b->status] ?? $b->status }}
+                    </span>
+                </div>
             </div>
 
             {{-- Info --}}
