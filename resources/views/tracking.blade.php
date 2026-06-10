@@ -87,6 +87,38 @@
             </div>
             <p class="stages-pct-label">Kemajuan: <strong>{{ $booking->progress }}%</strong></p>
 
+            <div class="tracking-card">
+
+            @if($booking->handled_by)
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                margin-bottom:1rem;
+                padding:.75rem 1rem;
+                background:#f9fafb;
+                border:1px solid #e5e7eb;
+                border-radius:10px;
+            ">
+                <span style="color:#6b7280;font-size:.85rem">
+                    Teknisi
+                </span>
+
+                <span style="
+                    background:#eef2ff;
+                    color:#4338ca;
+                    padding:6px 12px;
+                    border-radius:999px;
+                    font-size:.8rem;
+                    font-weight:600;
+                ">
+                    {{ $booking->handled_by }}
+                </span>
+            </div>
+            @endif
+
+        </div>
+
             <div class="stages-list">
                 @php $progressPct = $booking->progress; @endphp
                 @foreach($stages as $i => $stage)
@@ -137,35 +169,6 @@
             <p class="track-notes-text">{{ $booking->admin_notes }}</p>
         </div>
         @endif
-
-        <!-- INFO SPESIALIS — Real-time dari handled_by admin -->
-        <div class="track-specialist">
-            @php
-                $techName = $booking->handled_by ?? $booking->specialist ?? null;
-                $initials = $techName
-                    ? collect(explode(' ', $techName))->map(fn($w) => strtoupper(substr($w,0,1)))->take(2)->join('')
-                    : '?';
-            @endphp
-            <div class="specialist-info">
-                <div class="specialist-avatar {{ $techName ? 'specialist-avatar-active' : 'specialist-avatar-empty' }}">
-                    {{ $initials }}
-                </div>
-                <div>
-                    <p class="eyebrow">TEKNISI YANG MENANGANI</p>
-                    @if($techName)
-                        <h3>{{ $techName }}</h3>
-                        <p>Teknisi Resmi Skensa Auto Service</p>
-                        <span class="specialist-status-dot">● Sedang aktif menangani kendaraan Anda</span>
-                    @else
-                        <h3 style="color:var(--text-m)">Belum Ditugaskan</h3>
-                        <p>Menunggu penugasan teknisi oleh admin</p>
-                        <span class="specialist-status-pending">● Pesanan sedang menunggu konfirmasi</span>
-                    @endif
-                </div>
-            </div>
-            <a href="{{ route('booking') }}" class="btn-outline">PESAN LAYANAN LAIN</a>
-        </div>
-
         @else
         <div class="no-booking">
             <div class="no-booking-icon">🔍</div>
@@ -177,7 +180,6 @@
             </div>
         </div>
         @endif
-
         @endif
     </div>
 </section>

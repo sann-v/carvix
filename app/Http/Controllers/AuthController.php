@@ -66,7 +66,8 @@ class AuthController extends Controller
         ]);
 
         // Langsung login setelah daftar, redirect ke dashboard
-        Auth::login($user);
+        return redirect()->route('login')
+        ->with('success', 'Akun berhasil di tambahkan, silakan login.');
 
         return redirect()->route('dashboard')
             ->with('success', 'Akun berhasil dibuat. Selamat datang, ' . $user->name . '!');
