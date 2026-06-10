@@ -171,7 +171,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>TANGGAL LAYANAN</label>
+                        <label>TANGGAL SERVICE</label>
 
                         <input type="date"
                                name="service_date"

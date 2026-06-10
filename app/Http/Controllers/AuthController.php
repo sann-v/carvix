@@ -34,7 +34,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended(route('dashboard'))
+            return redirect()->intended(route('home'))
                 ->with('success', 'Selamat datang kembali, ' . Auth::user()->name . '!');
         }
 
@@ -65,12 +65,9 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        // Langsung login setelah daftar, redirect ke dashboard
+
         return redirect()->route('login')
         ->with('success', 'Akun berhasil di tambahkan, silakan login.');
-
-        return redirect()->route('dashboard')
-            ->with('success', 'Akun berhasil dibuat. Selamat datang, ' . $user->name . '!');
     }
 
     // ===== ADMIN (KARYAWAN) =====
